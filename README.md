@@ -14,6 +14,7 @@ Zig Language Server, or `zls`, is a language server for Zig. The Zig wiki states
   - [VSCode](#vscode)
   - [Sublime Text 3](#sublime-text-3)
   - [Kate](#kate)
+  - [Neovim](#neovim)
 - [Related Projects](#related-projects)
 - [License](#license)
 
@@ -98,6 +99,27 @@ Install the `zls-vscode` extension from [here](https://github.com/zigtools/zls-v
         }
     }
 }
+```
+
+### Neovim
+
+- Install an LSP plugin such as
+  [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)
+- LC-Nvim has a [suggested configuration](https://github.com/autozimu/LanguageClient-neovim/wiki/Recommended-Settings)
+  but at a minimum add the following to your init.vim
+```vim
+let g:LanguageClient_serverCommands = {
+    \ 'zig': ['/path/to/zls'],
+    \ }
+```
+- Additionally add a completion plugin such as [deoplete](https://github.com/Shougo/deoplete.nvim)
+- The following config options may also be helpful
+```vim
+" recommended for certain commands e.g. goto definition
+set hidden
+" during completion a preview split may open, the following
+" closes the preview split when the completion is done
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 ```
 
 ## Related Projects
